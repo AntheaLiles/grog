@@ -139,3 +139,7 @@ function convert_org_to_html(input_dir::String, output_dir::String)
                 
                 # Ajouter le titre dans le <head>
                 title = "My Org Site"  # Vous pouvez extraire le titre ici si nécessaire
+            end
+        end
+    end
+end
