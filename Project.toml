@@ -1,0 +1,12 @@
+name = "OrgSiteGenerator"
+uuid = "5bbd6b1d-f185-427c-8e1a-4305d105cf5d"
+authors = ["Anthea Liles"]
+version = "0.1.0"
+
+[deps]
+Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[compat]
+julia = "1.6"
+Genie = "5"

@@ -1,0 +1,10 @@
+#+TITLE: À propos
+
+* À propos de ce site
+Ce site est généré automatiquement à partir de fichiers Org-mode. Il utilise Genie.jl pour le backend et Vite.js pour le frontend.
+
+** Auteur
+Je suis un ingénieur en innovation digitale et chercheur au LAMIH dans le domaine des systèmes d'informations dédiés à l'ingénierie de systèmes complexes. J'apprends le développement en langage LISP, Julia et PHP. J'utilise les frameworks Genie.jl et Symfony. Je suis nouvel utilisateur d'Emacs et Org-mode, ayant choisi d'investir le temps nécessaire dans ces outils car je me sentais perdu dans la multitude d'outils spécifiques (vs code, logseq, notion, trello, etc.).
+
+** Contact
+Vous pouvez me contacter à l'adresse suivante : votre@email.com

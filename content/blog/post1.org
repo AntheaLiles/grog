@@ -1,0 +1,16 @@
+#+TITLE: Premier article
+
+* Premier article
+Bienvenue dans mon premier article de blog. Voici quelques points intéressants :
+
+** Introduction
+Cet article couvre les bases de l'utilisation d'Org-mode pour générer des sites web.
+
+** Code
+Voici un exemple de code en Julia :
+#+BEGIN_SRC julia
+println("Hello, World!")
+#+END_SRC
+
+** Conclusion
+Org-mode est un outil puissant pour la gestion de contenu et la génération de sites web.

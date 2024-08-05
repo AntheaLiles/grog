@@ -1,0 +1,56 @@
+name: Build and Deploy Org Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Julia
+        uses: julia-actions/setup-julia@v1
+        with:
+          version: '1.9'
+          
+      - name: Install Genie.jl
+        run: julia -e 'using Pkg; Pkg.add("Genie")'
+        
+      - name: Setup Node.js  
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Vite
+        run: npm install -g vite
+        
+      - name: Convert Org to HTML
+        run: julia scripts/org_to_html.jl
+        
+      - name: Build site with Genie and Vite  
+        run: |
+          julia scripts/build_site.jl
+          vite build
+          
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./public
+
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2

@@ -1,0 +1,50 @@
+# Julia-specific ignores
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+deps/deps.jl
+Manifest.toml
+
+# Node.js ignores
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output
+/public/
+/dist/
+
+# VS Code settings
+.vscode/
+
+# Environment variables
+.env
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*~
+
+# Log files
+*.log
+
+# Cache directories
+.cache/
+.julia/
+
+# Genie.jl specific
+/build/
+/app/resources/*/views/_*
+/app/resources/*/views/layouts/_*
+/app/resources/*/views/layouts/app.jl.html
+/app/resources/*/views/layouts/app.jl
+/app/resources/*/views/layouts/app.html
+
+# Vite.js specific
+.vite/
+
+# Project-specific output
+/OrgSite/

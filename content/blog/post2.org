@@ -1,0 +1,18 @@
+#+TITLE: Deuxième article
+
+* Deuxième article
+Dans ce deuxième article, nous allons explorer des fonctionnalités avancées d'Org-mode.
+
+** Listes
+Org-mode supporte différentes types de listes :
+- Listes non ordonnées
+- Listes ordonnées
+
+** Tableaux
+Vous pouvez également créer des tableaux :
+| *Colonne 1* | *Colonne 2* |
+|-------------|-------------|
+| Valeur 1    | Valeur 2    |
+
+** Conclusion
+Les fonctionnalités avancées d'Org-mode permettent de créer des documents riches et bien structurés.

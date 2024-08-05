@@ -1,0 +1,12 @@
+#+TITLE: Accueil
+
+* Bienvenue sur mon site
+Bienvenue sur mon site web généré à partir de fichiers Org-mode. Vous trouverez ici des informations sur divers sujets et des articles de blog intéressants.
+
+** À propos
+Pour en savoir plus sur moi et ce site, consultez la page [[/about][À propos]].
+
+** Blog
+Lisez mes derniers articles de blog :
+- [[/blog/post1][Premier article]]
+- [[/blog/post2][Deuxième article]]
