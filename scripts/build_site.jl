@@ -26,6 +26,9 @@ function create_routes()
 end
 
 function create_layout()
+    # Ensure the layouts directory exists
+    mkpath("layouts")
+
     layout = """
     <!DOCTYPE html>
     <html lang="en">
