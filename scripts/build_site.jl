@@ -1,11 +1,16 @@
 using Genie
 
 function build_site()
-    # Create the OrgSite directory if it doesn't exist
-    isdir("OrgSite") || mkdir("OrgSite")
+    # Remove the OrgSite directory if it exists
+    if isdir("OrgSite")
+        rm("OrgSite", recursive=true)
+    end
+
+    # Create the OrgSite directory
+    mkdir("OrgSite")
 
     cd("OrgSite") do
-        Genie.Generator.newapp("OrgSite", autostart = false, force = true)
+        Genie.Generator.newapp("OrgSite", autostart = false)
         create_routes()
         create_layout()
     end
