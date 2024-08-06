@@ -5,7 +5,7 @@ function build_site()
     isdir("OrgSite") || mkdir("OrgSite")
 
     cd("OrgSite") do
-        Genie.Generator.newapp("OrgSite", autostart = false)
+        Genie.Generator.newapp("OrgSite", autostart = false, force = true)
         create_routes()
         create_layout()
     end
