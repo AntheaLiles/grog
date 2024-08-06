@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: '18'
           
-      - name: Install Vite
-        run: npm install -g vite
+      - name: Install dependencies
+        run: npm install
         
       - name: Convert Org to HTML
         run: julia scripts/org_to_html.jl
@@ -34,7 +34,7 @@ jobs:
       - name: Build site with Genie and Vite  
         run: |
           julia scripts/build_site.jl
-          vite build
+          npx vite build
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
