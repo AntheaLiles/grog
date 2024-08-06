@@ -11,8 +11,8 @@ npm-debug.log
 yarn-error.log
 
 # Build output
-/public/
-/dist/
+# /public/
+# /dist/
 
 # VS Code settings
 .vscode/
@@ -47,4 +47,4 @@ Thumbs.db
 .vite/
 
 # Project-specific output
-/OrgSite/
+# /OrgSite/
