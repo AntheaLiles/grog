@@ -106,7 +106,7 @@ function org_to_html(org_content::String)
     return join(html_lines, "\n")
 end
 
-function process_inline_elements(text::String)
+function process_inline_elements(text::AbstractString)
     # Traiter les liens et les images
     text = replace(text, r"\[\[([^\]]+)\]\[([^\]]+)\]\]" => s"<a href=\"\1\">\2</a>")
     text = replace(text, r"\[\[([^\]]+)\]\]" => s"<img src=\"\1\" alt=\"\">")
