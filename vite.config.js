@@ -1,11 +1,12 @@
-import { defineConfig } from 'vite'
+const { defineConfig } = require('vite')
 
-export default defineConfig({
-  root: './public', // Assurez-vous que ce chemin pointe vers le répertoire contenant `index.html`
+module.exports = defineConfig({
+  root: './public',
   build: {
-    outDir: '../dist', // Chemin de sortie pour les fichiers construits
+    outDir: '../dist',
+    emptyOutDir: true,
     rollupOptions: {
-      input: './public/index.html', // Chemin vers `index.html`
+      input: './public/index.html',
     },
   },
 })
