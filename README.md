@@ -1,2 +1,2 @@
 # grog
-Genie.jl Org-mode parser to github's pages
+**G**enie.jl **Org**-mode parser to github's pages
