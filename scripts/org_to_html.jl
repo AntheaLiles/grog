@@ -1,6 +1,6 @@
 using Genie
 
-function org_to_html(org_content::String)
+function org_to_html(org_content::AbstractString)
     lines = split(org_content, "\n")
     html_lines = String[]
     in_code_block = false
@@ -122,7 +122,7 @@ function escape_html(text::String)
     replace(text, "<" => "&lt;", ">" => "&gt;", "&" => "&amp;", "\"" => "&quot;", "'" => "&#39;")
 end
 
-function convert_org_to_html(input_dir::String, output_dir::String)
+function convert_org_to_html(input_dir::AbstractString, output_dir::AbstractString)
     mkpath(output_dir)
     
     for (root, _, files) in walkdir(input_dir)

@@ -17,28 +17,30 @@ jobs:
         with:
           version: '1.9'
           
+      - uses: actions/cache@v3
+        with:
+          path: ~/.julia
+          key: ${{ runner.os }}-julia-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-julia-
+          
       - name: Install Julia dependencies
-        run: |
-          julia -e 'using Pkg; Pkg.add("Genie")'
-          julia -e 'using Pkg; Pkg.add("Glob")'
+        run: julia -e 'using Pkg; Pkg.add(["Genie", "Glob"])'
         
       - name: Setup Node.js  
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: '20'
+          cache: 'npm'
           
       - name: Install Node.js dependencies
         run: npm ci
         
-      - name: Build site
+      - name: Build site and copy files
         run: |
           julia scripts/build.jl
           npx vite build
-          
-      - name: Copy additional files
-        run: |
-          cp -R public/css dist/
-          cp -R public/src dist/
+          cp -R public/css public/src dist/
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
