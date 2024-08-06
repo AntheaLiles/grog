@@ -17,29 +17,33 @@ jobs:
         with:
           version: '1.9'
           
-      - name: Install Genie.jl
-        run: julia -e 'using Pkg; Pkg.add("Genie")'
+      - name: Install Julia dependencies
+        run: |
+          julia -e 'using Pkg; Pkg.add("Genie")'
+          julia -e 'using Pkg; Pkg.add("Glob")'
         
       - name: Setup Node.js  
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           
-      - name: Install dependencies
+      - name: Install Node.js dependencies
         run: npm install
         
-      - name: Convert Org to HTML
-        run: julia scripts/org_to_html.jl
-        
-      - name: Build site with Genie and Vite  
+      - name: Build site
         run: |
-          julia scripts/build_site.jl
+          julia scripts/build.jl
           npx vite build
+          
+      - name: Copy additional files
+        run: |
+          cp -R public/css dist/
+          cp -R public/src dist/
           
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: ./public
+          path: ./dist
 
   deploy:
     needs: build

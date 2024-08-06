@@ -1,12 +1,13 @@
-const { defineConfig } = require('vite')
+import { defineConfig } from 'vite'
+import { glob } from 'glob'
 
-module.exports = defineConfig({
-  root: './public',
+export default defineConfig({
+  root: 'public',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
     rollupOptions: {
-      input: './public/index.html',
+      input: ['./public/index.html', ...glob.sync('./public/**/*.html')],
     },
   },
 })
