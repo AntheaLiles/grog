@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { glob } from 'glob'
 
 export default defineConfig({
-  root: 'public',
+  root: './public',
   build: {
     outDir: '../dist',
     emptyOutDir: true,
