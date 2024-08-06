@@ -24,7 +24,7 @@ function org_to_html(org_content::String)
             push!(html_lines, "</blockquote>")
             in_quote_block = false
         elseif in_code_block
-            push!(html_lines, escape_html(line))
+            push!(html_lines, escape_html(String(line)))
         elseif in_quote_block
             push!(html_lines, line)
         elseif startswith(line, "* ")
@@ -118,8 +118,8 @@ function process_inline_elements(text::String)
     return text
 end
 
-function escape_html(text::String)
-    replace(text, "<" => "&lt;", ">" => "&gt;", "&" => "&amp;", "\"" => "&quot;", "'" => "&#39;")
+function escape_html(text::AbstractString)
+    replace(String(text), "<" => "&lt;", ">" => "&gt;", "&" => "&amp;", "\"" => "&quot;", "'" => "&#39;")
 end
 
 function convert_org_to_html(input_dir::String, output_dir::String)
