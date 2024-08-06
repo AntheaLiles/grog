@@ -28,23 +28,23 @@ function org_to_html(org_content::String)
         elseif in_quote_block
             push!(html_lines, line)
         elseif startswith(line, "* ")
-            push!(html_lines, "<h1>" * process_inline_elements(strip(line, ['*', ' ']))) * "</h1>")
+            push!(html_lines, "<h1>" * process_inline_elements(strip(line, ['*', ' '])) * "</h1>")
         elseif startswith(line, "** ")
-            push!(html_lines, "<h2>" * process_inline_elements(strip(line, ['*', ' ']))) * "</h2>")
+            push!(html_lines, "<h2>" * process_inline_elements(strip(line, ['*', ' '])) * "</h2>")
         elseif startswith(line, "*** ")
-            push!(html_lines, "<h3>" * process_inline_elements(strip(line, ['*', ' ']))) * "</h3>")
+            push!(html_lines, "<h3>" * process_inline_elements(strip(line, ['*', ' '])) * "</h3>")
         elseif startswith(line, "- ")
             if !in_list
                 push!(html_lines, "<ul>")
                 in_list = true
             end
-            push!(html_lines, "<li>" * process_inline_elements(strip(line, ['-', ' ']))) * "</li>")
+            push!(html_lines, "<li>" * process_inline_elements(strip(line, ['-', ' '])) * "</li>")
         elseif match(r"^\d+\.\s", line) !== nothing
             if !in_ordered_list
                 push!(html_lines, "<ol>")
                 in_ordered_list = true
             end
-            push!(html_lines, "<li>" * process_inline_elements(replace(line, r"^\d+\.\s" => ""))) * "</li>")
+            push!(html_lines, "<li>" * process_inline_elements(replace(line, r"^\d+\.\s" => "")) * "</li>")
         elseif startswith(line, "|")
             if !in_table
                 push!(html_lines, "<table>")
@@ -53,13 +53,13 @@ function org_to_html(org_content::String)
             end
             if table_header
                 cells = split(strip(line, ['|', ' ']), "|")
-                push!(html_lines, "<tr>" * join(["<th>" * process_inline_elements(strip(cell, [' ', '*']))) * "</th>" for cell in cells]) * "</tr>")
+                push!(html_lines, "<tr>" * join(["<th>" * process_inline_elements(strip(cell, [' ', '*'])) * "</th>" for cell in cells]) * "</tr>")
                 table_header = false
             elseif line == "|----|----|"
                 continue  # Skip the separator line
             else
                 cells = split(strip(line, ['|', ' ']), "|")
-                push!(html_lines, "<tr>" * join(["<td>" * process_inline_elements(strip(cell, ' '))) * "</td>" for cell in cells]) * "</tr>")
+                push!(html_lines, "<tr>" * join(["<td>" * process_inline_elements(strip(cell, ' ')) * "</td>" for cell in cells]) * "</tr>")
             end
         elseif strip(line) == ""
             if in_list
@@ -88,7 +88,7 @@ function org_to_html(org_content::String)
                 push!(html_lines, "</table>")
                 in_table = false
             end
-            push!(html_lines, "<p>" * process_inline_elements(line)) * "</p>")
+            push!(html_lines, "<p>" * process_inline_elements(line) * "</p>")
         end
     end
 
