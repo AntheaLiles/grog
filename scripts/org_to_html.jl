@@ -118,7 +118,7 @@ function process_inline_elements(text::AbstractString)
     return text
 end
 
-function escape_html(text::String)
+function escape_html(text::AbstractString)
     replace(text, "<" => "&lt;", ">" => "&gt;", "&" => "&amp;", "\"" => "&quot;", "'" => "&#39;")
 end
 

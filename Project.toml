@@ -5,8 +5,10 @@ version = "0.1.0"
 
 [deps]
 Genie = "c43c736e-a2d1-11e8-161f-af95117fbd1e"
+Glob = "c27321d9-0574-5a14-81e5-e6db4c4a5e4b"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
 
 [compat]
 julia = "1.6"
 Genie = "5"
+Glob = "1.3"
