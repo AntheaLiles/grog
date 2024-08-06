@@ -8,8 +8,46 @@ function build_site()
         Genie.Generator.newapp("OrgSite", autostart = false)
         create_routes()
         create_layout()
-        # Remove the call to write_static_files
     end
+
+    # Ensure the public directory exists
+    mkpath("public")
+
+    # Create index.html in the public directory
+    write("public/index.html", """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mon Site Org</title>
+        <link rel="stylesheet" href="/css/style.css">
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="module" src="/src/main.js"></script>
+    </body>
+    </html>
+    """)
+
+    # Ensure the CSS directory exists and create a basic style.css
+    mkpath("public/css")
+    write("public/css/style.css", """
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    """)
+
+    # Ensure the src directory exists and create a basic main.js
+    mkpath("public/src")
+    write("public/src/main.js", """
+    console.log('Hello, world!');
+    """)
 end
 
 function create_routes()

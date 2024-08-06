@@ -44,7 +44,7 @@ function org_to_html(org_content::String)
                 push!(html_lines, "<ol>")
                 in_ordered_list = true
             end
-            push!(html_lines, "<li>" * process_inline_elements(replace(line, r"^\d+\.\s" => "")) * "</li>")
+            push!(html_lines, "<li>" * process_inline_elements(String(replace(line, r"^\d+\.\s" => ""))) * "</li>")
         elseif startswith(line, "|")
             if !in_table
                 push!(html_lines, "<table>")
@@ -88,7 +88,7 @@ function org_to_html(org_content::String)
                 push!(html_lines, "</table>")
                 in_table = false
             end
-            push!(html_lines, "<p>" * process_inline_elements(line) * "</p>")
+            push!(html_lines, "<p>" * process_inline_elements(String(line)) * "</p>")
         end
     end
 
@@ -139,7 +139,25 @@ function convert_org_to_html(input_dir::String, output_dir::String)
                 
                 # Ajouter le titre dans le <head>
                 title = "My Org Site"  # Vous pouvez extraire le titre ici si nécessaire
+                full_html = """
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>$title</title>
+                    <link rel="stylesheet" href="/css/style.css">
+                </head>
+                <body>
+                    $html_content
+                </body>
+                </html>
+                """
+                
+                write(output_path, full_html)
             end
         end
     end
 end
+
+convert_org_to_html("content", "public")
