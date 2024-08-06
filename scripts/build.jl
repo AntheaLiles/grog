@@ -1,8 +1,4 @@
-include("org_to_html.jl")
-include("build_site.jl")
+using OrgSiteGenerator
 
-# Convertir les fichiers Org en HTML
-convert_org_to_html("content", "public")
-
-# Construire le site avec Genie
-build_site()
+OrgSiteGenerator.convert_org_to_html("content", "public")
+OrgSiteGenerator.build_site()

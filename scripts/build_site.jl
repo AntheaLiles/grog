@@ -72,34 +72,15 @@ function create_layout()
     # Ensure the layouts directory exists
     mkpath("layouts")
 
+    # Read the header and footer from their respective files
+    header = read(joinpath(@__DIR__, "..", "src", "components", "header.jl"), String)
+    footer = read(joinpath(@__DIR__, "..", "src", "components", "footer.jl"), String)
+
+    # Create the layout with the header and footer
     layout = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{PAGE_TITLE}}</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-        <header>
-            <h1>Mon Site Org</h1>
-            <nav>
-                <a href="/">Accueil</a>
-                <a href="/about">À propos</a>
-                <a href="/blog">Blog</a>
-            </nav>
-        </header>
-        
-        <main>
-            {{yield}}
-        </main>
-        
-        <footer>
-            <p>&copy; 2024 Mon Site Org</p>
-        </footer>
-    </body>
-    </html>
+    $header
+    {{yield}}
+    $footer
     """
     
     write("layouts/app.jl.html", layout)
