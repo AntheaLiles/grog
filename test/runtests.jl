@@ -1,3 +1,4 @@
+using Test
 using OrgSiteGenerator
 
 @testset "OrgSiteGenerator Tests" begin
