@@ -1,7 +1,6 @@
-using Test
-include("../scripts/org_to_html.jl")
+using OrgSiteGenerator
 
-@testset "Org to HTML Conversion" begin
+@testset "OrgSiteGenerator Tests" begin
     # Test de conversion des titres
     @test occursin("<h1>Titre 1</h1>", org_to_html("* Titre 1"))
     @test occursin("<h2>Titre 2</h2>", org_to_html("** Titre 2"))

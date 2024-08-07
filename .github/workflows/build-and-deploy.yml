@@ -32,7 +32,7 @@ jobs:
         run: julia -e 'using Pkg; Pkg.instantiate()'
 
       - name: Run tests
-        run: julia -e 'using Pkg; Pkg.activate("."); Pkg.test()'
+        run: julia --project=. -e 'using Pkg; Pkg.test()'
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
