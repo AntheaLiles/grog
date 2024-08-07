@@ -27,7 +27,8 @@ jobs:
           julia --project=. -e '
             using Pkg
             Pkg.instantiate()
-            Pkg.add(["Genie", "Glob"])
+            Pkg.add(PackageSpec(url="https://github.com/vtjnash/Glob.jl"))
+            Pkg.add("Genie")
           '
         
       - name: Setup Node.js  
