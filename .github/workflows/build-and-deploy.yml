@@ -18,30 +18,31 @@ jobs:
           version: '1.9'
           
       - name: Cache Julia packages
-        uses: julia-actions/cache@v2
+        uses: actions/cache@v2
         with:
-          cache-name: julia-packages
-
+          path: ~/.julia/artifacts
+          key: ${{ runner.os }}-julia-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-julia-
+      
       - name: Remove existing Project.toml and Manifest.toml
         run: |
           rm -f Project.toml Manifest.toml    
       
       - name: Create new Project.toml
         run: |
-          echo 'name = "MyProject"' > Project.toml
-          echo 'uuid = "5bbd6b1d-f185-427c-8e1a-4305d105cf5d"' >> Project.toml
-          echo '[deps]' >> Project.toml
-          echo 'Genie = "c27321d9-0574-5f3e-8a0d-6f7c8a4a7820"' >> Project.toml
-          echo 'Glob = { git = "https://github.com/vtjnash/Glob.jl" }' >> Project.toml
+          echo "name = 'OrgSiteGenerator'" > Project.toml
+          echo "uuid = '5bbd6b1d-f185-427c-8e1a-4305d105cf5d'" >> Project.toml
+          echo "version = '0.1.0'" >> Project.toml
 
-      - name: Install Julia dependencies
-        run: |
-          julia --project=. -e '
-            using Pkg
-            Pkg.instantiate()
-            Pkg.add(PackageSpec(url="https://github.com/vtjnash/Glob.jl"))
-            Pkg.add("Genie")
-          '
+      - name: Install dependencies
+        run: julia -e 'using Pkg; Pkg.instantiate()'
+      
+      - name: Run tests
+        run: julia -e 'using Pkg; Pkg.test()'
+      
+      - name: Deploy
+        run: echo "Deploy step here"
         
       - name: Setup Node.js  
         uses: actions/setup-node@v4
