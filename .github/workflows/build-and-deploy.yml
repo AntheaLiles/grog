@@ -21,7 +21,19 @@ jobs:
         uses: julia-actions/cache@v2
         with:
           cache-name: julia-packages
-          
+
+      - name: Remove existing Project.toml and Manifest.toml
+        run: |
+          rm -f Project.toml Manifest.toml    
+      
+      - name: Create new Project.toml
+        run: |
+          echo 'name = "MyProject"' > Project.toml
+          echo 'uuid = "00000000-0000-0000-0000-000000000000"' >> Project.toml
+          echo '[deps]' >> Project.toml
+          echo 'Genie = "c27321d9-0574-5f3e-8a0d-6f7c8a4a7820"' >> Project.toml
+          echo 'Glob = { git = "https://github.com/vtjnash/Glob.jl" }' >> Project.toml
+
       - name: Install Julia dependencies
         run: |
           julia --project=. -e '
