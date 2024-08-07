@@ -29,7 +29,7 @@ jobs:
         run: julia --project=. -e 'using Pkg; Pkg.status()'
 
       - name: Install dependencies
-        run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.update(); Pkg.resolve()'
+        run: julia --project=. -e 'using Pkg; Pkg.resolve(); Pkg.instantiate()'
 
       - name: Precompile packages
         run: julia --project=. -e 'using Pkg; Pkg.precompile()'
