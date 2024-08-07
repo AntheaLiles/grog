@@ -22,6 +22,12 @@ jobs:
         with:
           cache-name: julia-packages-${{ runner.os }}-${{ hashFiles('**/Project.toml') }}
 
+      - name: Remove existing Manifest.toml
+        run: rm -f Manifest.toml
+
+      - name: Validate Project.toml
+        run: julia --project=. -e 'using Pkg; Pkg.status()'
+
       - name: Install dependencies
         run: julia --project=. -e 'using Pkg; Pkg.instantiate(); Pkg.update(); Pkg.resolve()'
 
